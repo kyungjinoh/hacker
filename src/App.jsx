@@ -149,7 +149,7 @@ const AftershockScreen = ({
 )
 
 function App() {
-  const [secondsRemaining, setSecondsRemaining] = useState(6)
+  const [secondsRemaining, setSecondsRemaining] = useState(10)
   const [logEntries, setLogEntries] = useState([])
   const [isExploding, setIsExploding] = useState(false)
   const [hasExploded, setHasExploded] = useState(false)
