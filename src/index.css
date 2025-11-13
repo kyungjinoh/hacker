@@ -1,0 +1,51 @@
+:root {
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #ff4c4c;
+  background-color: #050505;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --notice-shift: 80px;
+  --notice-shift-active: var(--notice-shift);
+  --aftershock-extra-offset: 120px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #050505;
+  overflow: hidden;
+}
+
+@media (max-width: 494px), (max-height: 845px) {
+  :root {
+    --notice-shift: 68px;
+    --notice-shift-active: var(--notice-shift);
+    --aftershock-extra-offset: 96px;
+  }
+}
+
+@media (max-width: 397px), (max-height: 811px) {
+  :root {
+    --notice-shift: 60px;
+    --notice-shift-active: var(--notice-shift);
+    --aftershock-extra-offset: 80px;
+  }
+}
+
+@media (max-width: 344px), (max-height: 811px) {
+  :root {
+    --notice-shift: 56px;
+    --notice-shift-active: var(--notice-shift);
+    --aftershock-extra-offset: 70px;
+  }
+}
+
+.whiteout {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
