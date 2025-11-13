@@ -142,11 +142,19 @@
   outline: none;
 }
 
+.share-cta-text {
+  margin: 0 0 0.4rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(66, 40, 0, 0.62);
+}
+
 .share-controls {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .share-link-row {
@@ -154,7 +162,7 @@
 }
 
 .share-controls-card {
-  margin-top: clamp(0.75rem, 2.5vw, 1.2rem);
+  margin-top: clamp(0.6rem, 2vw, 1rem);
 }
 .app {
   display: flex;
@@ -301,14 +309,13 @@
   top: calc(var(--notice-shift-active) + var(--aftershock-extra-offset));
   left: 0;
   width: 100vw;
-  height: calc(100vh - var(--notice-shift-active) - var(--aftershock-extra-offset));
+  min-height: calc(100vh - var(--notice-shift-active) - var(--aftershock-extra-offset));
   background: linear-gradient(180deg, #ffffff 0%, #fdf3f3 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  padding: clamp(0.75rem, 3vw, 2rem) clamp(0.75rem, 4vw, 2rem);
+  overflow: visible;
   color: #1a1a1a;
   z-index: 2;
 }

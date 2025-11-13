@@ -10,7 +10,7 @@
   -moz-osx-font-smoothing: grayscale;
   --notice-shift: 80px;
   --notice-shift-active: var(--notice-shift);
-  --aftershock-extra-offset: 120px;
+  --aftershock-extra-offset: 160px;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
   :root {
     --notice-shift: 68px;
     --notice-shift-active: var(--notice-shift);
-    --aftershock-extra-offset: 96px;
+    --aftershock-extra-offset: 120px;
   }
 }
 
@@ -32,7 +32,7 @@ body {
   :root {
     --notice-shift: 60px;
     --notice-shift-active: var(--notice-shift);
-    --aftershock-extra-offset: 80px;
+    --aftershock-extra-offset: 100px;
   }
 }
 
@@ -40,7 +40,7 @@ body {
   :root {
     --notice-shift: 56px;
     --notice-shift-active: var(--notice-shift);
-    --aftershock-extra-offset: 70px;
+    --aftershock-extra-offset: 90px;
   }
 }
 
