@@ -127,9 +127,6 @@ const AftershockScreen = ({
           <span className="aftershock-message-label">Message from your friend</span>
           <q className="aftershock-message-quote">{displayMessage}</q>
         </div>
-        <div className="aftershock-gif-wrapper">
-          <img className="aftershock-gif" src={celebrationGif} alt="Prank celebration" />
-        </div>
         {showSharePrompt && (
           <p className="share-cta-text">Copy this link and share it with a friend to prank them ↓</p>
         )}
