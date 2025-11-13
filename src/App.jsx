@@ -128,20 +128,22 @@ const AftershockScreen = ({
           <q className="aftershock-message-quote">{displayMessage}</q>
         </div>
         {showSharePrompt && (
-          <p className="share-cta-text">Copy this link and share it with a friend to prank them ↓</p>
-        )}
-        {showControls && (
-          <SharingControls
-            className="share-controls-card"
-            labelId="aftershock-message"
-            message={shareMessage}
-            onMessageChange={onShareMessageChange}
-            copyStatus={copyStatus}
-            handleCopyLink={handleCopyLink}
-            displayUrl={displayUrl}
-            messageLabel="Message"
-            linkFirst
-          />
+          <div className="aftershock-share-card">
+            <p className="share-cta-text">Copy this link and share it with a friend to prank them ↓</p>
+            {showControls && (
+              <SharingControls
+                className="share-controls-card"
+                labelId="aftershock-message"
+                message={shareMessage}
+                onMessageChange={onShareMessageChange}
+                copyStatus={copyStatus}
+                handleCopyLink={handleCopyLink}
+                displayUrl={displayUrl}
+                messageLabel="Message"
+                linkFirst
+              />
+            )}
+          </div>
         )}
       </div>
     </div>
