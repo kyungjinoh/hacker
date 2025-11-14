@@ -163,6 +163,8 @@ function App() {
   const [displayUrl, setDisplayUrl] = useState('')
   const [shareMessage, setShareMessage] = useState(DEFAULT_MESSAGE)
   const [displayMessage, setDisplayMessage] = useState(DEFAULT_MESSAGE)
+  const [ipAddress, setIpAddress] = useState('Loading...')
+  const [deviceType, setDeviceType] = useState('Loading...')
   const [referralId] = useState(() => generateReferralId())
   const logIndexRef = useRef(0)
   const logContainerRef = useRef(null)
@@ -279,11 +281,91 @@ function App() {
           fractionalSecondDigits: 2
         })
         const updated = [...prev, `${timestamp}  ${nextLog}`]
-        return updated.length > 15 ? updated.slice(updated.length - 15) : updated
+        return updated.length > 1 ? updated.slice(updated.length - 1) : updated
       })
     }, 200)
 
     return () => clearInterval(interval)
+  }, [hasExploded])
+
+  useEffect(() => {
+    // Detect device type
+    const detectDeviceType = () => {
+      if (typeof window === 'undefined') return 'Unknown'
+      
+      const userAgent = navigator.userAgent.toLowerCase()
+      const width = window.innerWidth
+      
+      // Check for mobile devices
+      const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent) || 
+                       (width <= 768 && /mobile/i.test(userAgent))
+      
+      // Check for tablet devices
+      const isTablet = /ipad|android(?!.*mobile)|tablet/i.test(userAgent) || 
+                       (width > 768 && width <= 1024 && !isMobile)
+      
+      if (isMobile) {
+        return 'Phone'
+      } else if (isTablet) {
+        return 'Tablet'
+      } else {
+        return 'Desktop'
+      }
+    }
+
+    // Set device type immediately
+    setDeviceType(detectDeviceType())
+
+    // Fetch IP address
+    const fetchIp = async () => {
+      try {
+        // Try ipapi.co first
+        const response = await fetch('https://ipapi.co/json/')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.ip) {
+            setIpAddress(data.ip)
+            return
+          }
+        }
+      } catch (error) {
+        // Continue to fallback
+      }
+      
+      // Fallback: Try ip-api.com
+      try {
+        const fallbackResponse = await fetch('https://ip-api.com/json/')
+        if (fallbackResponse.ok) {
+          const fallbackData = await fallbackResponse.json()
+          if (fallbackData.query) {
+            setIpAddress(fallbackData.query)
+            return
+          }
+        }
+      } catch (fallbackError) {
+        // Continue to last resort
+      }
+      
+      // Last resort: Try ipify
+      try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json')
+        if (ipResponse.ok) {
+          const ipData = await ipResponse.json()
+          if (ipData.ip) {
+            setIpAddress(ipData.ip)
+            return
+          }
+        }
+      } catch (ipError) {
+        // Ignore
+      }
+      
+      setIpAddress('Unable to fetch')
+    }
+
+    if (!hasExploded) {
+      fetchIp()
+    }
   }, [hasExploded])
 
   useEffect(() => {
@@ -419,6 +501,16 @@ function App() {
         <span className="timer-label">seconds remaining</span>
         <div className="downloads">
           <div className="downloads-title">Progress Log</div>
+          <div className="ip-location-info">
+            <div className="ip-location-line">
+              <span className="ip-location-label">IP:</span>
+              <span className="ip-location-value">{ipAddress}</span>
+            </div>
+            <div className="ip-location-line">
+              <span className="ip-location-label">Device type:</span>
+              <span className="ip-location-value">{deviceType}</span>
+            </div>
+          </div>
           <div className="downloads-log" ref={logContainerRef}>
             {logEntries.map((entry, index) => (
               <div className="downloads-line" key={`${entry}-${index}`}>
