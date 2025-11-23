@@ -502,6 +502,37 @@
   gap: 0.45rem;
 }
 
+.discord-button {
+  margin-top: clamp(0.05rem, 0.25vw, 0.125rem);
+  margin-bottom: clamp(0.05rem, 0.25vw, 0.125rem);
+  padding: clamp(0.15rem, 0.5vw, 0.25rem);
+  background: transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.discord-logo {
+  width: clamp(3rem, 7vw, 4.5rem);
+  height: clamp(3rem, 7vw, 4.5rem);
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+}
+
+.discord-button:hover .discord-logo {
+  transform: scale(1.1);
+}
+
+.discord-button:active .discord-logo {
+  transform: scale(0.95);
+}
+
 @keyframes aftershock-fade {
   0% {
     opacity: 0;

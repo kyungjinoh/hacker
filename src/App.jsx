@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import celebrationGif from './assets/67.gif'
+import discordLogo from './assets/discord.png'
 
 const DOWNLOAD_MESSAGES = [
   'initializing payload...',
@@ -145,6 +146,14 @@ const AftershockScreen = ({
             )}
           </div>
         )}
+        <a
+          href="https://discord.gg/gGqrFQRjmE"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="discord-button"
+        >
+          <img src={discordLogo} alt="Discord" className="discord-logo" />
+        </a>
       </div>
     </div>
   </div>
